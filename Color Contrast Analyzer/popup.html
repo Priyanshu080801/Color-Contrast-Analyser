@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WCAG Color Contrast Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      width: 300px;
+      background-color:#e8dff7;
+    }
+    label {
+      display: block;
+      margin: 5px 0 3px;
+    }
+    #contrast-ratio {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+    .result {
+      margin-top: 3px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .pass {
+      color: green;
+    }
+    .fail {
+      color: red;
+    }
+    .color-container {
+      margin-bottom: 15px;
+    }
+    .color-display {
+      width: 3cm;
+      height: 25px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      cursor: default;
+    }
+    .color-controls {
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+    }
+    .color-controls input[type="text"] {
+      width: calc(3cm - 35px);
+      height: 25px;
+      margin-right: 5px;
+      box-sizing: border-box;
+    }
+    .copy-button {
+      width: 25px;
+      height: 25px;
+      font-size: 0;
+      cursor: pointer;
+      border: 1px solid #303030ab;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.5s ease, border-color 0.5s ease;
+    }
+    .eyedropper-icon {
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      border: none;
+      background: linear-gradient(45deg, #33ffe9, #008efd);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      margin-left: 10px;
+    }
+    .title {
+      font-family: Arial;
+      font-size: 19px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">Color Contrast Analyzer</h1>
+  <h2 class="title" style="font-size: 16px;">By Sharsti Arya</h2>
+
+  <div class="color-container">
+    <label style="font-weight: bold;" for="color1">Foreground:</label>
+    <div style="display: flex; align-items: center;">
+      <div id="color1Display" class="color-display" style="background-color: #ffffff;"></div>
+      <button id="pickColor1" class="eyedropper-icon" aria-label="Pick Foreground Color">
+        <img src="icons/eyedropper.png" alt="Eyedropper">
+      </button>
+    </div>
+    <div class="color-controls">
+      <input type="text" id="color1Input" value="#ffffff" aria-label="Foreground Color Input">
+      <button id="copyColor1" class="copy-button" aria-label="Copy foreground color">
+        <img src="icons/copy-icon.png" alt="Copy">
+      </button>
+    </div>
+  </div>
+
+  <div class="color-container">
+    <label style="font-weight: bold;" for="color2">Background:</label>
+    <div style="display: flex; align-items: center;">
+      <div id="color2Display" class="color-display" style="background-color: #000000;"></div>
+      <button id="pickColor2" class="eyedropper-icon" aria-label="Pick Background Color">
+        <img src="icons/eyedropper.png" alt="Eyedropper">
+      </button>
+    </div>
+    <div class="color-controls">
+      <input type="text" id="color2Input" value="#000000" aria-label="Background Color Input">
+      <button id="copyColor2" class="copy-button" aria-label="Copy background color">
+        <img src="icons/copy-icon.png" alt="Copy">
+      </button>
+    </div>
+  </div>
+
+  <div id="contrast-ratio">Contrast Ratio: <span id="ratio">0</span></div>
+  
+  <div class="result">
+    Contrast (Minimum): <span id="contrast-minimum" class="fail">Fail</span>
+  </div>
+  
+  <div class="result">
+    Non-Text Contrast: <span id="non-text-contrast" class="fail">Fail</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
